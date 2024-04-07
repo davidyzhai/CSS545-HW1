@@ -22,18 +22,26 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Button(onClick = {val navigate = Intent(this@MainActivity, AnotherActivity::class.java)
-                startActivity(navigate)
-                }) {
-                    Text(text = "Navigate", fontSize = 10.sp)
+            NavigateOneActivityToAnotherTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text("page one", fontSize = 24.sp) // Adding the text "page one"
+                        Button(onClick = {
+                            val navigate = Intent(this@MainActivity, AnotherActivity::class.java)
+                            startActivity(navigate)
+                        }) {
+                            Text(text = "Navigate", fontSize = 10.sp)
+                        }
+                    }
                 }
             }
         }
     }
 }
-
